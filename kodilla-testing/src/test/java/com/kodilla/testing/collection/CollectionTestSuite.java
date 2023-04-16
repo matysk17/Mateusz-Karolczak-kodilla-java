@@ -7,7 +7,6 @@ import org.junit.jupiter.api.*;
 
 public class CollectionTestSuite {
 
-
     @BeforeEach
     public void before() {
         System.out.println("Test Case: begin");
@@ -37,7 +36,6 @@ public class CollectionTestSuite {
 
     }
 
-
     @DisplayName("When ArrayList numbers contain odd and even numbers," +
             "Then ArrayList evenNumber should be contain only even numbers")
     @Test
@@ -59,7 +57,6 @@ public class CollectionTestSuite {
         //Then
         Assertions.assertEquals(2, result);
         Assertions.assertEquals(expectedNumbers, evenNumbers);
-
 
     }
 }

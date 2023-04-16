@@ -14,10 +14,10 @@ public class CollectionTestSuite {
 
     @AfterEach
     public void after() {
-        System.out.println("Test Case: end");
+        System.out.println("Test Case: end ");
     }
 
-    @DisplayName("When ArrayList numbers is empty," +
+    @DisplayName("When ArrayList numbers is empty, " +
             "Then ArrayList evenNumber should be empty too")
 
     @Test

@@ -1,8 +1,9 @@
 package com.kodilla.stream.forum;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public class ForumUser {
 
     public final class ForumUser {
         private final String username;
@@ -62,11 +63,13 @@ public class ForumUser {
         public int hashCode() {
             return username.hashCode();
         }
-    }
-    public Set<String> getLocationsOfFriends() {
-        return friends.stream()
-                .map(ForumUser::getLocation)                    // [1]
-                .collect(Collectors.toSet());
+
+
+        public Set<String> getLocationsOfFriends() {
+            return friends.stream()
+                    .map(ForumUser::getLocation)                    // [1]
+                    .collect(Collectors.toSet());
+        }
 
         public Set<String> getLocationsOfFriendsOfFriends() {
             return friends.stream()                               // [1]
@@ -75,4 +78,4 @@ public class ForumUser {
                     .map(ForumUser::getLocation)                       // [4]
                     .collect(Collectors.toSet());                      // [5]
         }
-}
+    }

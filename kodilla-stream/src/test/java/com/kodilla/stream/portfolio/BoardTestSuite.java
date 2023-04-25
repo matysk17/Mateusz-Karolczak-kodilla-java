@@ -1,7 +1,9 @@
 package com.kodilla.stream.portfolio;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,5 +139,40 @@ class BoardTestSuite {
 
         //Then
         assertEquals(2, longTasks);                                       // [9]
+    }
+    @Test
+    public void testAddTaskListAverageWorkingOnTask(){
+        //Given
+        Board project = prepareTestData();
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+
+        int sumOfDays = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(task -> Period.between(task.getCreated(), LocalDate.now()).getDays())
+                .reduce(0, (sum, current)->sum+=current );
+
+        int tasksQty = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(task -> Period.between(task.getCreated(), LocalDate.now()).getDays())
+                .map(t ->1)
+                .reduce(0, (sum, current)->sum+=current );
+
+        double average = sumOfDays/tasksQty;
+
+        double avg = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(task -> Period.between(task.getCreated(), LocalDate.now()).getDays())
+                .mapToInt(Integer::intValue)
+                .average()
+                .getAsDouble();
+
+        //Then
+        Assert.assertEquals(10.0, average, 0.0001);
+        Assert.assertEquals(10.0, avg, 0.0001);
     }
 }

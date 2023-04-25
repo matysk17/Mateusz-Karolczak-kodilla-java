@@ -1,4 +1,4 @@
-ppackage com.kodilla.stream.forum;
+package com.kodilla.stream.forum;
 
 import org.junit.jupiter.api.Test;
 
